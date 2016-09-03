@@ -1,6 +1,7 @@
 <?php
 @$query = $_GET["q"];
 $google_key = "AIzaSyA7NWgLZeXIA8leZswLGDFri5NCNZ801VQ";
+$hp_key = "c7b3fa19-7afa-43a0-a7bc-034c3b192f5c";
 $video_terms = ["video", "show", "play"];
 $flag = 0;
 
@@ -12,9 +13,17 @@ foreach ($video_terms as $video_term) {
 }
 
 if ($flag == 1) {
-	$data = file_get_contents("https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&maxResults=1&key=$google_key");
+	$query = urlencode($query);
+	$data = file_get_contents("https://api.havenondemand.com/1/api/sync/extractconcepts/v1?text=$query&apikey=$hp_key");
+	$data = json_decode($data, true);
+	$concept = $data["concepts"][0]["concept"];
+	$concept = urlencode($concept);
 
-	print_r($data);
+	$data = file_get_contents("https://www.googleapis.com/youtube/v3/search?part=snippet&q=$concept&type=video&videoCaption=closedCaption&maxResults=1&key=$google_key");
+	$data = json_decode($data, true);
+	$video_id = $data["items"][0]["id"]["videoId"];
+
+	echo("https://www.youtube.com/watch?v=".$video_id."vid");
 } else {
 	$url = 'https://www.pandorabots.com/pandora/talk?botid=935a0a567e34523c';
 	$data = array("input" => urlencode($query), "questionstring" => "Select+a+question", "submit" => "Ask+The+Professor", "botcust2" => "d028c08f5f391562");
@@ -34,9 +43,9 @@ if ($flag == 1) {
 	$parsed = get_string_between($result, 'The Professor:', '</font>');
 
 	$response = str_replace("<br/><br/>", "", $parsed);
+	echo($response);
 }
 
-// echo($response);
 
 function get_string_between($string, $start, $end){
     $string = ' ' . $string;
