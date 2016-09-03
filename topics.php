@@ -1,33 +1,29 @@
 <?php
+	require_once("inc/functions.inc.php");
+	require_once("inc/variables.inc.php");
+
 	// $username_arr = $_POST["username"];
-	$username_arr = array("AnirudhGoel", "smart-sachin");
+	$username_arr = array("AnirudhGoel");
 	$repos = array();
-
-	function curl($url) {
-	    $ch = curl_init();
-	    // curl_setopt($ch, CURLOPT_URL,$url);
-	    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-	    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-	    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-
-	    curl_setopt_array($ch, array(
-		    CURLOPT_RETURNTRANSFER => 1,
-		    CURLOPT_URL => $url,
-		    CURLOPT_USERAGENT => "Fetch User Repos"
-		));
-	    
-	    $content = curl_exec($ch);
-	    curl_close($ch);
-	    return $content;
-	}
 
 	foreach ($username_arr as $username) {
 		$data = curl("https://api.github.com/users/$username/repos");
 		$data = json_decode($data, true);
 		foreach ($data as $repo) {
-			array_push($repos, $repo["html_url"]);
+			$repo_url = $repo["html_url"];
+			$repo_content = file_get_contents($repo_url);
+			$regex = '#<\s*?article\b[^>]*>(.*?)</article\b[^>]*>#s';
+			preg_match_all($regex, $repo_content, $readme);
+			// echo($readme[0][0]);
+			foreach ($topics as &$topic) {
+				if (@strpos($readme[0][0], $topic["name"]) !== false) {
+					$topic["freq"] += 1;
+				}
+			}
+			// break;
 		}
 	}
+	print_r($topics);
 
-	print_r($repos);
+	// print_r($repos);
 ?>
