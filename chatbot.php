@@ -12,6 +12,20 @@ foreach ($video_terms as $video_term) {
 	}
 }
 
+if (stripos($query, "define") !== false) {
+	$flag = 2;
+	$query = str_replace("define", "", $query);
+}
+
+if (stripos($query, "what is") !== false) {
+	$flag = 2;
+	$query = str_replace("what is", "", $query);
+}
+
+if (stripos($query, "Manmohan") !== false) {
+	$flag = 3;
+}
+
 if ($flag == 1) {
 	$query = urlencode($query);
 	$data = file_get_contents("https://api.havenondemand.com/1/api/sync/extractconcepts/v1?text=$query&apikey=$hp_key");
@@ -24,11 +38,26 @@ if ($flag == 1) {
 	$video_id = $data["items"][0]["id"]["videoId"];
 
 	echo("https://www.youtube.com/watch?v=".$video_id."vid");
+} else if ($flag == 2) {
+	$data = file_get_contents("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=".urlencode($query));
+	$data = json_decode($data, true);
+	foreach ($data["query"]["pages"] as $page) {
+		if (array_key_exists("extract", $page)) {
+			$long = htmlspecialchars($page["extract"]);
+			$sentences = explode(". ", $long);
+			$sentences = array_slice($sentences, 0, 3);
+			$response = implode(". ", $sentences);
+			echo($response);
+		} else {
+			echo("Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query));
+		}
+	}
+} else if ($flag == 3) {
+	echo("https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/8/000/20c/0da/06db71f.jpg");
 } else {
 	$url = 'https://www.pandorabots.com/pandora/talk?botid=935a0a567e34523c';
 	$data = array("input" => urlencode($query), "questionstring" => "Select+a+question", "submit" => "Ask+The+Professor", "botcust2" => "d028c08f5f391562");
 
-	// use key 'http' even if you send the request to https://...
 	$options = array(
 	    'http' => array(
 	        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -38,7 +67,9 @@ if ($flag == 1) {
 	);
 	$context  = stream_context_create($options);
 	$result = file_get_contents($url, false, $context);
-	if ($result === FALSE) { /* Handle error */ }
+	if ($result === FALSE) { 
+		echo("Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query));
+	}
 
 	$parsed = get_string_between($result, 'The Professor:', '</font>');
 
