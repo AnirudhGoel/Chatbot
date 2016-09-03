@@ -3,7 +3,7 @@
 	require_once("inc/variables.inc.php");
 
 	// $username_arr = $_POST["username"];
-	$username_arr = array("AnirudhGoel");
+	$username_arr = array("AnirudhGoel", "smart-sachin", "himanshuS1995", "prabhakar267");
 	$repos = array();
 
 	foreach ($username_arr as $username) {
@@ -20,10 +20,7 @@
 					$topic["freq"] += 1;
 				}
 			}
-			// break;
 		}
 	}
 	print_r($topics);
-
-	// print_r($repos);
 ?>
