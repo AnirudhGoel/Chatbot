@@ -42,7 +42,7 @@ if ($flag == 1) {
 	$data = file_get_contents("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=".urlencode($query));
 	$data = json_decode($data, true);
 	foreach ($data["query"]["pages"] as $page) {
-		if (array_key_exists("extract", $page)) {
+		if (array_key_exists("extract", $page) && $page["extract"] != "") {
 			$long = htmlspecialchars($page["extract"]);
 			$sentences = explode(". ", $long);
 			$sentences = array_slice($sentences, 0, 3);
