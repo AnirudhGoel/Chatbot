@@ -16,4 +16,8 @@ function curl($url) {
     curl_close($ch);
     return $content;
 }
+
+function cmp($a, $b) {
+	return $b["freq"] - $a["freq"];
+}
 ?>

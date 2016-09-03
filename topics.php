@@ -3,7 +3,7 @@
 	require_once("inc/variables.inc.php");
 
 	// $username_arr = $_POST["username"];
-	$username_arr = array("smart-sachin");
+	$username_arr = array("HimanshuS1995");
 	$repos = array();
 
 	foreach ($username_arr as $username) {
@@ -22,10 +22,9 @@
 			}
 		}
 	}
-	function cmp($a, $b) {
-		return $b["freq"] - $a["freq"];
-	}
 
 	usort($topics, "cmp");
+	$topics = array_slice($topics, 0, 10);
+	$topics = json_encode($topics, true);
 	print_r($topics);
 ?>
