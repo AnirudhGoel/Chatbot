@@ -2,8 +2,9 @@
 	require_once("inc/functions.inc.php");
 	require_once("inc/variables.inc.php");
 
-	// $username_arr = $_POST["username"];
-	$username_arr = array("HimanshuS1995");
+	$usernames = $_GET["user"];
+	$username_arr = explode(",", $usernames);
+	// $username_arr = array("HimanshuS1995");
 	$repos = array();
 
 	foreach ($username_arr as $username) {
