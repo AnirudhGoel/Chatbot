@@ -1,8 +1,20 @@
 <?php
 @$query = $_GET["q"];
+$google_key = "AIzaSyA7NWgLZeXIA8leZswLGDFri5NCNZ801VQ";
+$video_terms = ["video", "show", "play"];
+$flag = 0;
 
-if (strpos($query, "video")) {
-	
+foreach ($video_terms as $video_term) {
+	if (stripos($query, $video_term) !== false) {
+		$flag = 1;
+		$query = str_replace($video_term, "", $query);
+	}
+}
+
+if ($flag == 1) {
+	$data = file_get_contents("https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&maxResults=1&key=$google_key");
+
+	print_r($data);
 } else {
 	$url = 'https://www.pandorabots.com/pandora/talk?botid=935a0a567e34523c';
 	$data = array("input" => urlencode($query), "questionstring" => "Select+a+question", "submit" => "Ask+The+Professor", "botcust2" => "d028c08f5f391562");
@@ -23,7 +35,8 @@ if (strpos($query, "video")) {
 
 	$response = str_replace("<br/><br/>", "", $parsed);
 }
-echo($response);
+
+// echo($response);
 
 function get_string_between($string, $start, $end){
     $string = ' ' . $string;
@@ -35,5 +48,5 @@ function get_string_between($string, $start, $end){
 }
 ?>
 
-<!-- google_key = AIzaSyA7NWgLZeXIA8leZswLGDFri5NCNZ801VQ -->
 <!-- https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&key={YOUR_API_KEY} -->
+<!-- https://api.havenondemand.com/1/api/sync/extractconcepts/v1?text=+me+of+how+to+do+welding&apikey=c7b3fa19-7afa-43a0-a7bc-034c3b192f5c -->
