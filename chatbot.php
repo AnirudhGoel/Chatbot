@@ -37,7 +37,7 @@ if ($flag == 1) {
 	$data = json_decode($data, true);
 	$video_id = $data["items"][0]["id"]["videoId"];
 
-	echo("https://www.youtube.com/watch?v=".$video_id."vid");
+	print_r(json_encode("https://www.youtube.com/watch?v=".$video_id."vid", true));
 } else if ($flag == 2) {
 	$data = file_get_contents("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=".urlencode($query));
 	$data = json_decode($data, true);
@@ -47,13 +47,13 @@ if ($flag == 1) {
 			$sentences = explode(". ", $long);
 			$sentences = array_slice($sentences, 0, 3);
 			$response = implode(". ", $sentences);
-			echo($response);
+			print_r(json_encode($response, true));
 		} else {
-			echo("You must be really tired ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query));
+			print_r(json_encode("You must be really tired ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query), true));
 		}
 	}
 } else if ($flag == 3) {
-	echo("https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/8/000/20c/0da/06db71f.jpg");
+	print_r(json_encode("https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/8/000/20c/0da/06db71f.jpg", true));
 } else {
 	$url = 'https://www.pandorabots.com/pandora/talk?botid=935a0a567e34523c';
 	$data = array("input" => urlencode($query), "questionstring" => "Select+a+question", "submit" => "Ask+The+Professor", "botcust2" => "d028c08f5f391562");
@@ -68,12 +68,12 @@ if ($flag == 1) {
 	$context  = stream_context_create($options);
 	$result = file_get_contents($url, false, $context);
 	if ($result === FALSE) { 
-		echo("Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query));
+		print_r(json_encode("Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query), true));
 	} else {
 		$parsed = get_string_between($result, 'The Professor:', '</font>');
 
 		$response = str_replace("<br/><br/>", "", $parsed);
-		echo($response);
+		print_r(json_encode($response, true));
 	}
 
 }
