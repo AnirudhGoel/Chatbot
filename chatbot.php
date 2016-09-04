@@ -49,7 +49,7 @@ if ($flag == 1) {
 			$response = implode(". ", $sentences);
 			echo($response);
 		} else {
-			echo("Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query));
+			echo("You must be really tired ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query));
 		}
 	}
 } else if ($flag == 3) {
@@ -69,12 +69,13 @@ if ($flag == 1) {
 	$result = file_get_contents($url, false, $context);
 	if ($result === FALSE) { 
 		echo("Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query));
+	} else {
+		$parsed = get_string_between($result, 'The Professor:', '</font>');
+
+		$response = str_replace("<br/><br/>", "", $parsed);
+		echo($response);
 	}
 
-	$parsed = get_string_between($result, 'The Professor:', '</font>');
-
-	$response = str_replace("<br/><br/>", "", $parsed);
-	echo($response);
 }
 
 
