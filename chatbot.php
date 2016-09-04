@@ -73,7 +73,7 @@ if ($flag == 1) {
 		$parsed = get_string_between($result, 'The Professor:', '</font>');
 
 		$response = str_replace("<br/><br/>", "", $parsed);
-		$response = substr($response, 23);
+		// $response = substr($response, 23);
 		print_r(json_encode($response, true));
 	}
 
