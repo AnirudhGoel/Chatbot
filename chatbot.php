@@ -4,6 +4,7 @@ $google_key = "AIzaSyA7NWgLZeXIA8leZswLGDFri5NCNZ801VQ";
 $hp_key = "c7b3fa19-7afa-43a0-a7bc-034c3b192f5c";
 $video_terms = ["video", "show", "play"];
 $flag = 0;
+$final = ["result" => "failed"];
 
 foreach ($video_terms as $video_term) {
 	if (stripos($query, $video_term) !== false) {
@@ -37,7 +38,8 @@ if ($flag == 1) {
 	$data = json_decode($data, true);
 	$video_id = $data["items"][0]["id"]["videoId"];
 
-	print_r(json_encode("https://www.youtube.com/watch?v=".$video_id."vid", true));
+	$final["result"] = "https://www.youtube.com/watch?v=".$video_id."vid";
+	print_r(json_encode($final, true));
 } else if ($flag == 2) {
 	$data = file_get_contents("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=".urlencode($query));
 	$data = json_decode($data, true);
@@ -47,13 +49,16 @@ if ($flag == 1) {
 			$sentences = explode(". ", $long);
 			$sentences = array_slice($sentences, 0, 3);
 			$response = implode(". ", $sentences);
-			print_r(json_encode($response, true));
+			$final["result"] = $response;
+			print_r(json_encode($final, true));
 		} else {
-			print_r(json_encode("You must be really tired ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query), true));
+			$final["result"] = "You must be really tired ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query);
+			print_r(json_encode($final, true));
 		}
 	}
 } else if ($flag == 3) {
-	print_r(json_encode("https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/8/000/20c/0da/06db71f.jpg", true));
+	$final["result"] = "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/8/000/20c/0da/06db71f.jpg";
+	print_r(json_encode($final, true));
 } else {
 	$url = 'https://www.pandorabots.com/pandora/talk?botid=935a0a567e34523c';
 	$data = array("input" => urlencode($query), "questionstring" => "Select+a+question", "submit" => "Ask+The+Professor", "botcust2" => "d028c08f5f391562");
@@ -67,14 +72,16 @@ if ($flag == 1) {
 	);
 	$context  = stream_context_create($options);
 	$result = file_get_contents($url, false, $context);
-	if ($result === FALSE) { 
-		print_r(json_encode("Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query), true));
+	if ($result == FALSE) {
+		$final["result"] = "Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=".urlencode($query);
+		print_r(json_encode($final, true));
 	} else {
 		$parsed = get_string_between($result, 'The Professor:', '</font>');
 
 		$response = str_replace("<br/><br/>", "", $parsed);
-		// $response = substr($response, 23);
-		print_r(json_encode($response, true));
+		$response = substr($response, 8);
+		$final["result"] = $response;
+		print_r(json_encode($final, true));
 	}
 
 }
