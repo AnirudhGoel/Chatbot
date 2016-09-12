@@ -28,4 +28,4 @@ This chatbot API uses multiple APIs to fetch different types of answers -
 
 --------------------------
 
-If you have any issues contact me via [email](http://scr.im/3hmx).
+Contact me via [email](http://scr.im/3hmx).
