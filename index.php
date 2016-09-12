@@ -38,7 +38,7 @@ if ($flag == 1) {
 	$data = json_decode($data, true);
 	$video_id = $data["items"][0]["id"]["videoId"];
 
-	$final["result"] = "https://www.youtube.com/watch?v=".$video_id."vid";
+	$final["result"] = "https://www.youtube.com/watch?v=".$video_id;
 	print_r(json_encode($final, true));
 } else if ($flag == 2) {
 	$data = file_get_contents("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=".urlencode($query));
