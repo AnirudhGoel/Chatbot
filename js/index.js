@@ -17,7 +17,8 @@ function reply(event) {
 		$(".load").last().fadeIn(1500);
 		$(".chat-body").animate({ scrollTop: $(".chat-body")[0].scrollHeight}, 1000);
 		
-		$.get("../Chatbot/chatbot.php", {q: query}, function(data) {
+		// $.get("../Chatbot/chatbot.php", {q: query}, function(data) {				Use this when working locally and next for Heroku
+		$.get("../chatbot.php", {q: query}, function(data) {
 			data = JSON.parse(data);
 			var reply = data["result"];
 			$(".load").last().fadeOut(200, function() {
