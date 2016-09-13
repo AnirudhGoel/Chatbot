@@ -117,6 +117,7 @@ body {
 	display: none;									/*To add fadeIn effect*/
 }
 .loader {
+	cursor: wait;
 	margin-left: 10px;
 	height: 25px;
 }
