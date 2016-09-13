@@ -5,10 +5,10 @@ function checkEnter(event) {
 }
 function reply(event) {
 	var data = "";
-	console.log("Hello");
 	if (checkEnter(event) == "true") {
 		var query = $(".text").text();
 		$(".text").text("");
+		
 		$(".chat-body").append("<div class='query'>" + query + "</div>");
 		$(".query").last().fadeIn(200);
 		$(".chat-body").animate({ scrollTop: $(".chat-body")[0].scrollHeight}, 1000);
