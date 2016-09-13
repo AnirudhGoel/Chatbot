@@ -11,11 +11,9 @@ body {
 	width: 100vw;
 	height: 100vh;
 	background-color: white;
-	/*border: black solid 3px;*/
 }
 .name {
 	border: 2px solid #f2f2f2;
-	/*color: white;*/
 	font-size: 20px;
 	background-color: #f7f9fa;
 	padding: 15px 0px 10px 35px;
@@ -77,9 +75,11 @@ body {
 	margin-right: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	width: 40%;
+	width: 60%;
 	word-wrap: break-word;
 	background-color: lightgreen;
+	box-shadow: 5px 5px 5px 0px #C0C0C0;
+	display: none;									/*To add fadeIn effect*/
 }
 .reply {
 	padding: 10px 10px 10px 10px;
@@ -92,9 +92,32 @@ body {
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	width: 40%;
+	width: 60%;
 	word-wrap: break-word;
 	background-color: lightblue;
+	box-shadow: 5px 5px 5px 0px #C0C0C0;
+	display: none;									/*To add fadeIn effect*/
+}
+.load {
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
+	border: 1px solid black;
+	float: left;
+	clear: both;
+	font-size: 19px;
+	text-align: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 150px;
+	word-wrap: break-word;
+	background-color: lightblue;
+	box-shadow: 5px 5px 5px 0px #C0C0C0;
+	display: none;									/*To add fadeIn effect*/
+}
+.loader {
+	margin-left: 10px;
+	height: 25px;
 }
 @media only screen and (min-width: 768px) {
 	.outer-box {
