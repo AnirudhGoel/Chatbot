@@ -1,0 +1,119 @@
+@import "https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600|Lato:300,400";
+body {
+	background-color: #f2f2f2;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	/*background-color: #f7f9fa;*/
+}
+.outer-box {
+	position: fixed;
+	padding-bottom: 0px;
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	/*border: black solid 3px;*/
+}
+.name {
+	border: 2px solid #f2f2f2;
+	/*color: white;*/
+	font-size: 20px;
+	background-color: #f7f9fa;
+	padding: 15px 0px 10px 35px;
+	width: 100%;
+	position: absolute;
+	top: 0px;
+}
+.chatbot-logo {
+	padding-bottom: 4px;
+	width: 45px;
+	margin-right: 10px;
+}
+.input-area {
+	width: 100%;
+	background-color: #f7f9fa;
+	position: absolute;
+	bottom: 0px;
+	height: 60px;
+}
+.input-box {
+	height: 40px;
+	background-color: white;
+	margin: 10px 35px 5px 35px;
+	background-clip: padding-box;
+	border-radius: 5px;
+}
+.text:focus {
+	outline: 0px solid transparent;
+}
+.text {
+	padding-left: 15px;
+	padding-top: 10px;
+}
+.text[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: grey; 
+}
+.text[placeholder]:empty:focus:before {
+    content: "";
+}
+.chat-body {
+	padding-top: 10px;
+	background-image: url("../img/bg.png");
+	background-size: cover;
+	top: 78px;
+	position: relative;
+	overflow-y: auto;
+	height: calc(100vh - 138px);
+	/*background-color: blue;*/
+}
+.query {
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
+	border: 1px solid black;
+	float: right;
+	clear: both;
+	font-size: 19px;
+	text-align: left;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 40%;
+	/*word-wrap: break-word;*/
+	background-color: lightgreen;
+}
+.reply {
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
+	border: 1px solid black;
+	float: left;
+	clear: both;
+	font-size: 19px;
+	text-align: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 40%;
+	/*word-wrap: break-word;*/
+	background-color: lightblue;
+}
+@media only screen and (min-width: 768px) {
+	.outer-box {
+		position: fixed;
+		width: 80vw;
+		top: 10vh;
+		left: 10vw;
+		height: 80vh;
+		background-color: white;
+	    box-shadow: 0px 0px 50px -15px #888888;
+		/*border: black solid 3px;*/
+	}
+	.chat-body {
+		background-image: url("../img/bg.png");
+		background-size: cover;
+		top: 78px;
+		position: relative;
+		overflow-y: auto;
+		height: calc(80vh - 138px);
+		/*background-color: blue;*/
+	}
+}

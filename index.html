@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="author" content="Anirudh Goel" />
+
+    <link rel="icon" href="img/ico.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<title>Chatbot</title>
+</head>
+<body>
+	<div class="outer-box">
+		<div class="name">
+			<img src="img/ico.png" class="chatbot-logo img-circle">
+			The Professor
+		</div>
+		<div class="chat-body"></div>
+		<div class="input-area">
+			<div class="input-box">
+				<div contenteditable="true" spellcheck="true" class="text" placeholder="Type a message" onkeyup="reply(event);"></div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

@@ -95,7 +95,6 @@ function get_string_between($string, $start, $end){
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
 }
+// https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&key={YOUR_API_KEY}
+// https://api.havenondemand.com/1/api/sync/extractconcepts/v1?text=+me+of+how+to+do+welding&apikey=c7b3fa19-7afa-43a0-a7bc-034c3b192f5c
 ?>
-
-<!-- https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&key={YOUR_API_KEY} -->
-<!-- https://api.havenondemand.com/1/api/sync/extractconcepts/v1?text=+me+of+how+to+do+welding&apikey=c7b3fa19-7afa-43a0-a7bc-034c3b192f5c -->

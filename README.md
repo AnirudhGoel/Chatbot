@@ -18,13 +18,13 @@ This chatbot API uses multiple APIs to fetch different types of answers -
 * ***Pandora Bots API*** - To get those witty answers !
 
 # Screenshots
-![Screenshot 1](img/ss1.png)
+![Screenshot 1](img/ss/ss1.png)
 
-![Screenshot 2](img/ss2.png)
+![Screenshot 2](img/ss/ss2.png)
 
-![Screenshot 3](img/ss3.png)
+![Screenshot 3](img/ss/ss3.png)
 
-![Screenshot 4](img/ss4.png)
+![Screenshot 4](img/ss/ss4.png)
 
 --------------------------
 
