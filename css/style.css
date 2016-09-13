@@ -20,6 +20,7 @@ body {
 	width: 100%;
 	position: absolute;
 	top: 0px;
+	cursor: default;
 }
 .chatbot-logo {
 	padding-bottom: 4px;
