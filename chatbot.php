@@ -5,6 +5,7 @@ $hp_key = "c7b3fa19-7afa-43a0-a7bc-034c3b192f5c";
 $flag = 0;
 $video_terms = ["video", "show", "play", "demonstrate"];
 $define_terms = ["define", "what is", "what's", "definition of"];
+$game_terms = ["open quiz", "i am bored", "open game"];
 $final = ["result" => "failed"];
 
 foreach ($video_terms as $video_term) {
@@ -18,6 +19,13 @@ foreach ($define_terms as $define_term) {
 	if (stripos($query, $define_term) !== false) {
 		$flag = 2;
 		$query = str_ireplace($define_term, "", $query);
+	}
+}
+
+// Additional Case for mobile app
+foreach ($game_terms as $game_term) {
+	if (strcasecmp(trim($query), $game_term) == 0) {
+		$flag = 3;
 	}
 }
 
@@ -46,6 +54,8 @@ if ($flag == 1) {
 			$final["result"] = "Let me Google that for you - http://lmgtfy.com/?q=$query";
 		}
 	}
+} else if ($flag == 3) {
+	$final["result"] = "101";
 } else {
 	$url = 'https://www.pandorabots.com/pandora/talk?botid=935a0a567e34523c';
 	$data = array("input" => urlencode($query), "questionstring" => "Select+a+question", "submit" => "Ask+The+Professor", "botcust2" => "d028c08f5f391562");
@@ -58,7 +68,6 @@ if ($flag == 1) {
 	);
 	$context  = stream_context_create($options);
 	$result = file_get_contents($url, false, $context);
-
 	if ($result == FALSE) {
 		$final["result"] = "Umm.. Something doesn't look right.. Wait ! Let me Google that for you - http://lmgtfy.com/?q=$query";
 	} else {
