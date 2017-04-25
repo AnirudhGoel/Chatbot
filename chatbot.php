@@ -1,7 +1,9 @@
 <?php
 @$query = $_GET["q"];
-$google_key = "AIzaSyA7NWgLZeXIA8leZswLGDFri5NCNZ801VQ";
-$hp_key = "c7b3fa19-7afa-43a0-a7bc-034c3b192f5c";
+$google_key = ENV['google_key'];
+$hp_key = ENV['hp_key'];
+$pandora_bot_id = ENV['pandora_bot_id'];
+$pandora_bot_url = "https://www.pandorabots.com/pandora/talk?botid=".$pandora_bot_id;
 $flag = 0;
 $video_terms = ["video", "show", "play", "demonstrate"];
 $define_terms = ["define", "what is", "what's", "definition of"];
@@ -57,7 +59,7 @@ if ($flag == 1) {
 } else if ($flag == 3) {
 	$final["result"] = "101";
 } else {
-	$url = 'https://www.pandorabots.com/pandora/talk?botid=935a0a567e34523c';
+	$url = $pandora_bot_url;
 	$data = array("input" => urlencode($query), "questionstring" => "Select+a+question", "submit" => "Ask+The+Professor", "botcust2" => "d028c08f5f391562");
 	$options = array(
 	    'http' => array(
