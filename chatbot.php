@@ -1,8 +1,8 @@
 <?php
 @$query = $_GET["q"];
-$google_key = ENV['google_key'];
-$hp_key = ENV['hp_key'];
-$pandora_bot_id = ENV['pandora_bot_id'];
+$google_key = getenv('google_key');
+$hp_key = getenv('hp_key');
+$pandora_bot_id = getenv('pandora_bot_id');
 $pandora_bot_url = "https://www.pandorabots.com/pandora/talk?botid=".$pandora_bot_id;
 $flag = 0;
 $video_terms = ["video", "show", "play", "demonstrate"];
